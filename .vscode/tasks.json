@@ -1,0 +1,95 @@
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: g++ 生成活动文件",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-Ofast",
+        "${file}",
+        // seastar link opt
+        "`pkg-config",
+        "--libs",
+        "--cflags",
+        "--static",
+        "seastar`",
+        // 
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "编译器: /usr/bin/g++"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: g++ 链接AsterHiredis生成活动文件",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        // "-I/home/hejia/Documents/AsterHiredis",
+        "-I/usr/local/include/aster_hiredis/",
+        // seastar cflags opt
+        "`pkg-config",
+        "--cflags",
+        "seastar`",
+        //
+        "-Ofast",
+        "${file}",
+        // 
+        // "-L/home/hejia/Documents/AsterHiredis/build",
+        "-laster_hiredis_static_debug",
+        // "-laster_hiredis_static",
+        // seastar link opt
+        "`pkg-config",
+        "--libs",
+        "--static",
+        "seastar`",
+        //
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "编译器: /usr/bin/g++"
+    },
+    {
+      "label": "makefile build",
+      "command": "make",
+      "args": [
+        "-j48"
+      ],
+      "type": "shell"
+    },
+    {
+      "label": "makefile build-debug",
+      "command": "make",
+      "args": [
+        "debug"
+      ],
+      "type": "shell"
+    },
+    {
+      "label": "makefile clean",
+      "command": "make",
+      "args": [
+        "clean"
+      ],
+      "type": "shell"
+    }
+  ],
+  "version": "2.0.0"
+}

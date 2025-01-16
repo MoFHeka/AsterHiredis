@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+set_and_check(aster_hiredis_INCLUDEDIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+IF (NOT TARGET AsterHiredis::aster_hiredis)
+	INCLUDE(${CMAKE_CURRENT_LIST_DIR}/aster-hiredis-targets.cmake)
+ENDIF()
+
+SET(aster_hiredis_LIBRARIES AsterHiredis::aster_hiredis)
+SET(aster_hiredis_INCLUDE_DIRS ${aster_hiredis_INCLUDEDIR})
+
+check_required_components(aster_hiredis)
+
